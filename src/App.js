@@ -12,7 +12,7 @@ function App() {
       querySnapshot.forEach((doc) => {
         const { lien, nom } = doc.data()
 
-        const RSS_URL = lien;
+        const RSS_URL = "https://cors-anywhere.herokuapp.com/" + lien;
         fetch(RSS_URL)
           .then(response => response.text())
           .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
