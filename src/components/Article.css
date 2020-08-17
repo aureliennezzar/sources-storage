@@ -1,12 +1,25 @@
 article{
-    border: solid 1px #000000;
-    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    background: #7e7e7e;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding:10px;
+    justify-content: center;
     cursor: pointer;
+    font-family: 'Archivo', sans-serif;
 }
 article h3{
     text-align: center;
+    padding:10px;
+    line-height: 1.35;
 }
+.article-footer{
+    position:absolute;
+    padding: 5px 10px;
+    display:flex;
+    bottom:0;
+    width:100%;
+    justify-content:space-between;
+}
+
