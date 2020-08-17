@@ -22,7 +22,7 @@ function App() {
               const titre = item.querySelector("title").innerHTML
               const lien = item.querySelector("link").innerHTML
               const date = item.querySelector("pubDate").innerHTML
-              setArticles(oldArray => [...oldArray, {titre, lien, nom, date}]);
+              setArticles(oldArray => [...oldArray, { titre, lien, nom, date }]);
             })
           })
       });
@@ -32,10 +32,12 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome to Sources Storage</h1>
-      {articles.map((article, i ) => {
-        const { titre, lien, nom, date } = article
-        return <Article key={i} titre={titre} lien={lien} from={nom} date={date} ></Article>
-      })}
+      <div className="articles">
+        {articles.map((article, i) => {
+          const { titre, lien, nom, date } = article
+          return <Article key={i} titre={titre} lien={lien} from={nom} date={date} ></Article>
+        })}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,12 @@
+article{
+    border: solid 1px #000000;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:10px;
+    cursor: pointer;
+}
+article h3{
+    text-align: center;
+}
