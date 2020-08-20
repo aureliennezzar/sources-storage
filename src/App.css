@@ -1,6 +1,13 @@
 .articles {
+    /* border: 1px solid red; */
     display: grid;
-    width: 90%;
+    width: 85%;
+    padding: 40px;
+    margin-top:30px;
+    border-radius: 15px;
+    background: #FF6B35;
+    box-shadow: inset 5px 5px 10px #c9552a, 
+                inset -5px -5px 10px #ff8140;
     grid-template-columns: repeat(auto-fit, minmax(290px, 2fr));
     grid-auto-rows: minmax(300px, auto);
     gap: 2rem;
@@ -12,13 +19,26 @@
     align-items: center;
 }
 
+header {
+    margin-bottom: 15px;
+    height: 150px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    width: 100vw;
+    background: #EBECF0;
+}
+
 .App h1 {
     margin: 30px 0 0 0;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+    color: #BABECC;
+    text-shadow: 1px 1px 1px #FFF;
+    font-size: 2.5rem;
+    letter-spacing: 0.3em;
+    font-weight: 700;
 }
 
 @media screen and (max-width:800px) {

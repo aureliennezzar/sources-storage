@@ -1,15 +1,15 @@
 article {
     color: rgb(255, 255, 255);
     position: relative;
-    background: #7e7e7e;
-    border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
-    background: #457B9D;
-    box-shadow: -5px -5px 12px #4b86ad, 5px 5px 12px #3b6985;
     padding: 10px;
+    border-radius: 27px;
+    background: linear-gradient(145deg, #e66030, #ff7239);
+    box-shadow: 6px 6px 20px #e86130, -6px -6px 20px #ff753a;
 }
 
 article span {
@@ -17,9 +17,10 @@ article span {
     height: 20px;
     font-family: 'Merriweather', serif;
     color: #d9f0ff;
+    text-shadow: 1px 1px 1px #FFF;
 }
 
-.article-name{
+.article-name {
     text-align: center;
     padding: 10px 10px 0 10px;
     line-height: 1.35;
@@ -27,11 +28,12 @@ article span {
     font-size: 20px;
     color: #bde6ff;
     letter-spacing: .15rem;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.238);
 }
 
 .article-footer {
+    padding:10px;
     position: absolute;
-    padding: 5px 10px;
     display: flex;
     bottom: 0;
     width: 100%;

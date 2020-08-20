@@ -91,14 +91,14 @@ const Inputs = () => {
     return (
         <div className="inputs">
             <div>
-                <label>Lien RSS</label>
-                <input style={inputsState.lien ? { border: "red 2px solid" } : null} type="text" name="lien" onChange={handleChange} placeholder="Écrire ici" value={lien}></input>
+                {/* <label>Lien RSS</label> */}
+                <input className={inputsState.lien ? "error" : null} type="text" name="lien" onChange={handleChange} placeholder="Lien RSS " value={lien}></input>
             </div>
             <div>
-                <label>Nom du flux</label>
-                <input style={inputsState.nom ? { border: "red 2px solid" } : null} type="text" name="nom" onChange={handleChange} placeholder="Écrire ici" value={nom}></input>
+                {/* <label>Nom du flux</label> */}
+                <input className={inputsState.nom ? "error" : null} type="text" name="nom" onChange={handleChange} placeholder="Média " value={nom}></input>
             </div>
-            <button onClick={handleClick}>Ajouter</button>
+            <button onClick={handleClick}><span>+</span></button>
         </div>
     );
 }

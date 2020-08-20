@@ -7,8 +7,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to Sources Storage</h1>
-      <Inputs />
+      <header>
+        <h1>Welcome to Sources Storage</h1>
+        <Inputs />
+      </header>
+
       <ArticlesList />
     </div>
   );

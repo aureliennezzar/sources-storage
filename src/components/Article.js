@@ -19,7 +19,7 @@ const Article = ({ titre, lien, from, date }) => {
     }
     return (
         <article onClick={handleClick}>
-            <span>“</span>
+            <span style={{alignSelf:"flex-start"}}>“</span>
             <p className="article-name">{titre.split('[')[2].split(']]>')[0]}</p>
             
             <span style={{alignSelf:"flex-end"}}>”</span>
