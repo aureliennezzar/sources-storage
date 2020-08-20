@@ -54,14 +54,20 @@ const Inputs = () => {
                             lien,
                             nom
                         })
+                        setState({
+                            ...state,
+                            lien: "",
+                            nom: ""
+                        })
                         alert("FLUX RSS AJOUTÉ");
                     } else {
 
                         setInputsState({
                             lien: true,
-                            nom:false
+                            nom: false
                         })
-                        // alert("FLUX RSS NON VALIDE");
+
+                        alert("FLUX RSS NON VALIDE");
                     }
                 })
             //Vide les inputs
@@ -69,11 +75,6 @@ const Inputs = () => {
 
         } else setInputsState(checkEmpty(state))
 
-        setState({
-            ...state,
-            lien: "",
-            nom: ""
-        })
     }
     const handleChange = (e) => {
         setInputsState({
@@ -89,8 +90,14 @@ const Inputs = () => {
 
     return (
         <div className="inputs">
-            <input style={inputsState.lien ? { border: "red 2px solid" } : null} type="text" name="lien" onChange={handleChange} placeholder="Lien" value={lien}></input>
-            <input style={inputsState.nom ? { border: "red 2px solid" } : null} type="text" name="nom" onChange={handleChange} placeholder="Nom de la source" value={nom}></input>
+            <div>
+                <label>Lien RSS</label>
+                <input style={inputsState.lien ? { border: "red 2px solid" } : null} type="text" name="lien" onChange={handleChange} placeholder="Écrire ici" value={lien}></input>
+            </div>
+            <div>
+                <label>Nom du flux</label>
+                <input style={inputsState.nom ? { border: "red 2px solid" } : null} type="text" name="nom" onChange={handleChange} placeholder="Écrire ici" value={nom}></input>
+            </div>
             <button onClick={handleClick}>Ajouter</button>
         </div>
     );

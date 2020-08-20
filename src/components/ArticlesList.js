@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../services/firebase'
 import Article from './Article';
+import './ArticlesList.css'
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
