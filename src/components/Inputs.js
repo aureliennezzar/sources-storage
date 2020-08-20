@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../services/firebase'
 import './Inputs.css'
 const Inputs = () => {
@@ -11,68 +11,6 @@ const Inputs = () => {
         nom: false
     })
     const { lien, nom, } = state
-
-    const checkInputs = () => {
-        //Check si les inputs sont valides
-        let result = true
-        const arr = ["lien", "nom"]
-        //Creation du nouveau state des inputs
-        let newState = {}
-        
-        //Bocule sur le tableau "arr"
-        for (let i = 0; i < 2; i++) {
-            //Check si le state.lien et state.nom sont vides ou non
-            //Si un des inputs est vide alors modifie le nouveau state
-            if (state[arr[i]] === "") {
-                newState[arr[i]] = true
-                result = false
-            } else {
-                newState[arr[i]] = false
-            }
-        }
-        //Check si un des inputs a ete declaré comme vide
-        if(result===false){
-            //Si un des inputs a ete declaré comme vide alors actualise le state et renvoi False
-            setInputsState(newState);
-            return false
-        } else {
-            return true
-        }
-    }
-    const handleClick = () => {
-        //Si un des inputs est vide sort de la fonction
-        if (!checkInputs()) return
-        isFeedValid(lien)
-            .then((result) => {
-                if (JSON.parse(result)) {
-                    //Si un le lien est valide alors creer un nouveau document dans la bdd RSS
-                    db.collection("rss").add({
-                        lien,
-                        nom
-                    })
-                    alert("FLUX RSS AJOUTÉ");
-                } else {
-                    alert("FLUX RSS NON VALIDE");
-                }
-            })
-        //Vide les inputs
-        setState({
-            ...state,
-            lien: "",
-            nom: ""
-        })
-    }
-    const handleChange = (e) => {
-        setInputsState({
-            lien: false,
-            nom: false
-        })
-        setState({
-            ...state,
-            [e.target.name]: e.target.value,
-        })
-
-    }
 
     const isFeedValid = (lien) => {
         //Fonction qui test si un lien est un flux rss ou non
@@ -91,6 +29,64 @@ const Inputs = () => {
             request.send()
         })
     }
+
+    const checkEmpty = (obj) => {
+        let newtab = [obj.lien, obj.nom]
+        newtab.forEach((e, i) => {
+            if (e.length === 0) {
+                newtab[i] = true
+
+            } else {
+                newtab[i] = false
+            }
+        })
+        return new Object({ lien: newtab[0], nom: newtab[1] })
+    }
+
+    const handleClick = () => {
+        //Si un des inputs est vide sort de la fonction
+        if (state.lien.length > 0 && state.nom.length > 0) {
+            isFeedValid(lien)
+                .then((result) => {
+                    if (JSON.parse(result)) {
+                        //Si un le lien est valide alors creer un nouveau document dans la bdd RSS
+                        db.collection("rss").add({
+                            lien,
+                            nom
+                        })
+                        alert("FLUX RSS AJOUTÉ");
+                    } else {
+
+                        setInputsState({
+                            lien: true,
+                            nom:false
+                        })
+                        // alert("FLUX RSS NON VALIDE");
+                    }
+                })
+            //Vide les inputs
+
+
+        } else setInputsState(checkEmpty(state))
+
+        setState({
+            ...state,
+            lien: "",
+            nom: ""
+        })
+    }
+    const handleChange = (e) => {
+        setInputsState({
+            lien: false,
+            nom: false
+        })
+        setState({
+            ...state,
+            [e.target.name]: e.target.value,
+        })
+
+    }
+
     return (
         <div className="inputs">
             <input style={inputsState.lien ? { border: "red 2px solid" } : null} type="text" name="lien" onChange={handleChange} placeholder="Lien" value={lien}></input>
