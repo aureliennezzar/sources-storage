@@ -7,16 +7,23 @@ article {
     align-items: center;
     cursor: pointer;
     padding: 10px;
-    border-radius: 27px;
-    background: linear-gradient(145deg, #e66030, #ff7239);
-    box-shadow: 6px 6px 20px #e86130, -6px -6px 20px #ff753a;
+    background: #EBECF0;
+    box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+    border-radius:2em;
+ 
+    transition: all 0.2s ease-in-out;
+}
+
+.articleClick {
+    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    transition: all 0.2s ease-in-out;
 }
 
 article span {
     font-size: 30px;
     height: 20px;
     font-family: 'Merriweather', serif;
-    color: #d9f0ff;
+    color: #BABECC;
     text-shadow: 1px 1px 1px #FFF;
 }
 
@@ -25,14 +32,15 @@ article span {
     padding: 10px 10px 0 10px;
     line-height: 1.35;
     font-weight: 500;
-    font-size: 20px;
-    color: #bde6ff;
+    font-size: 1.2rem;
+    color: #61677C;
     letter-spacing: .15rem;
     text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.238);
 }
 
 .article-footer {
-    padding:10px;
+    color: #BABECC;
+    padding: 10px;
     position: absolute;
     display: flex;
     bottom: 0;

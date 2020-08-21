@@ -3,11 +3,8 @@
     display: grid;
     width: 85%;
     padding: 40px;
-    margin-top:30px;
-    border-radius: 15px;
-    background: #FF6B35;
-    box-shadow: inset 5px 5px 10px #c9552a, 
-                inset -5px -5px 10px #ff8140;
+    margin-top: 30px;
+    background: #EBECF0;
     grid-template-columns: repeat(auto-fit, minmax(290px, 2fr));
     grid-auto-rows: minmax(300px, auto);
     gap: 2rem;

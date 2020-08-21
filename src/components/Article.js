@@ -13,12 +13,16 @@ const Article = ({ titre, lien, from, date }) => {
         setTime(`${dd}/${mm}/${yyyy}`)
     },[])
 
-    const handleClick = ()=>{
+    const handleClick = (e)=>{
         //Ouvre le lien dans un nouvel onglet
         window.open(lien, '_blank');
+        e.currentTarget.className = ""
+    }
+    const changeStyle = (e)=>{
+        e.currentTarget.className = "articleClick"
     }
     return (
-        <article onClick={handleClick}>
+        <article onMouseUp={handleClick} onMouseDown={changeStyle}>
             <span style={{alignSelf:"flex-start"}}>“</span>
             <p className="article-name">{titre.split('[')[2].split(']]>')[0]}</p>
             
