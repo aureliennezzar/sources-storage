@@ -15,7 +15,8 @@ article {
 }
 
 .articleClick {
-    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+    box-shadow: inset 5px 5px 10px #cfd0d3, 
+            inset -5px -5px 10px #ffffff;
     transition: all 0.2s ease-in-out;
 }
 

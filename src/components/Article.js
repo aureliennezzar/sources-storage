@@ -22,7 +22,7 @@ const Article = ({ titre, lien, from, date }) => {
         e.currentTarget.className = "articleClick"
     }
     return (
-        <article onMouseUp={handleClick} onMouseDown={changeStyle}>
+        <article onMouseUp={handleClick} onMouseDown={changeStyle} onMouseLeave={ e => e.currentTarget.className = ""}>
             <span style={{alignSelf:"flex-start"}}>“</span>
             <p className="article-name">{titre.split('[')[2].split(']]>')[0]}</p>
             

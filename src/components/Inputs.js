@@ -40,9 +40,8 @@ const Inputs = () => {
                 newtab[i] = false
             }
         })
-        return new Object({ lien: newtab[0], nom: newtab[1] })
+        return {lien: newtab[0], nom: newtab[1]}
     }
-
     const handleClick = () => {
         //Si un des inputs est vide sort de la fonction
         if (state.lien.length > 0 && state.nom.length > 0) {
