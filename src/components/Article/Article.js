@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useState } from 'react';
 import './Article.css'
 
 const Article = ({ titre, lien, from, date }) => {
-    console.log();
     const [time, setTime] = useState("")
     const [open, setOpen] = useState(false)
     useLayoutEffect(() => {
@@ -13,7 +12,30 @@ const Article = ({ titre, lien, from, date }) => {
         const mm = ('0' + (newDate.getMonth() + 1)).slice(-2)
         const yyyy = newDate.getFullYear()
         setTime(`${dd}/${mm}/${yyyy}`)
+
+
     }, [])
+
+    const formatedText = (text) => {
+        let title = text.split('[')[2].split(']]>')[0]
+        let count = 0
+        let isBig = false
+
+        const result = title.split(" ").map(word => {
+            count += word.length + 1
+            if (count <= 100) {
+                return word
+            }
+            else {
+                isBig = true
+            }
+        }).join(' ').trim()
+        if (isBig) {
+            return result + "..."
+        } else {
+            return result
+        }
+    }
 
     const handleClick = (e) => {
         //Ouvre le lien dans un nouvel onglet
@@ -22,7 +44,7 @@ const Article = ({ titre, lien, from, date }) => {
             e.currentTarget.className = ""
         }
     }
-    
+
     const addStyle = (e) => {
         setOpen(true)
         e.currentTarget.className = "articleClick"
@@ -34,7 +56,7 @@ const Article = ({ titre, lien, from, date }) => {
     return (
         <article onMouseUp={handleClick} onMouseDown={addStyle} onMouseLeave={removeStyle}>
             <span style={{ alignSelf: "flex-start" }}>“</span>
-            <p className="article-name">{titre.split('[')[2].split(']]>')[0]}</p>
+            <p className="article-name">{formatedText(titre)}</p>
 
             <span style={{ alignSelf: "flex-end" }}>”</span>
             <div className="article-footer">
