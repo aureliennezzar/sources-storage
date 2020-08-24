@@ -1,29 +1,16 @@
-.articles {
-    /* border: 1px solid red; */
-    display: grid;
-    width: 85%;
-    padding: 40px;
-    margin-top: 30px;
-    background: #EBECF0;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 2fr));
-    grid-auto-rows: minmax(300px, auto);
-    gap: 2rem;
-}
-
 .App {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-header {
+.App header {
+    width: 100vw;
     margin-bottom: 15px;
-    height: 150px;
+    height: auto;
     flex-direction: column;
     align-items: center;
     display: flex;
-    width: 100vw;
-    background: #EBECF0;
 }
 
 .App h1 {

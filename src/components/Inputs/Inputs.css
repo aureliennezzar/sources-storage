@@ -80,7 +80,7 @@
     line-height: 150%;
 }
 
-@media screen and (max-width:630px) {
+@media screen and (max-width:800px) {
     .inputs {
         width: 100%;
         flex-direction: column;
@@ -91,10 +91,10 @@
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
-        width: 300px;
+        width: 75vw;
     }
-    .inputs button {
-        width: 100px;
+    .inputs input {
+      width: 100%;
     }
 }
 

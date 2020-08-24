@@ -9,15 +9,22 @@ article {
     padding: 10px;
     background: #EBECF0;
     box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
-    border-radius:2em;
- 
+    border-radius: 2em;
     transition: all 0.2s ease-in-out;
 }
 
 .articleClick {
-    box-shadow: inset 5px 5px 10px #cfd0d3, 
-            inset -5px -5px 10px #ffffff;
+    box-shadow: inset 5px 5px 10px #cfd0d3, inset -5px -5px 10px #ffffff;
     transition: all 0.2s ease-in-out;
+}
+
+.articleClick p {
+    font-size: 1.185rem;
+}
+
+.articleClick div p {
+    font-size: 16px;
+    padding: 0;
 }
 
 article span {
@@ -45,6 +52,6 @@ article span {
     position: absolute;
     display: flex;
     bottom: 0;
-    width: 100%;
+    width: 95%;
     justify-content: space-between;
 }
