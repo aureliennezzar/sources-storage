@@ -1,15 +1,17 @@
 .inputs input {
+  -webkit-appearance: none;
   padding: 1rem;
   /* border-radius: 5px; */
   border: none;
   width: 350px;
   outline: none;
   border-radius: 2rem;
-  background: #EBECF0;
+  background-color: #EBECF0;
   font-size: 1rem;
   letter-spacing: 0.1em;
   font-family: 'Montserrat', sans-serif;
   box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  -webkit-box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
   margin: 0 5px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -39,12 +41,28 @@
   text-shadow: 1px 1px 1px #FFF;
 }
 
+.inputs input::-webkit-input-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input::-moz-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input:-ms-input-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
 .inputs input::placeholder {
   color: #61677C;
   text-shadow: 1px 1px 1px #FFF;
 }
 
 .inputs button {
+  -webkit-appearance: none;
   display: block;
   width: 50px;
   height: 50px;
@@ -61,32 +79,40 @@
   position: relative;
 }
 
-button span {
+.inputs button span {
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-51%, -52%);
   transform: translate(-51%, -52%);
   font-family: 'Merriweather', sans-serif;
   font-weight: 500;
   font-size: 45px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
-button:hover {
+.inputs button:hover {
   box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
 }
 
-button:active {
+.inputs button:active {
   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
 
 .inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 35px 0;
 }
-.inputs div{
+
+.inputs div {
   margin-right: 20px;
 }
+
 .inputs div label {
   line-height: 150%;
 }
@@ -94,12 +120,23 @@ button:active {
 @media screen and (max-width:835px) {
   .inputs {
     width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
   }
   .inputs div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 10px 0;
     width: 75vw;

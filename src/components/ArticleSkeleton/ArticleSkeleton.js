@@ -4,11 +4,11 @@ import './ArticleSkeleton.css'
 const ArticleSkeleton = () => {
     return (
         <article className="article-skeleton">
-            {/* <div class="loaderctnr">
+            <div class="loaderctnr">
                 <span class="circle first"></span>
                 <span class="circle second"></span>
                 <span class="circle third"></span>
-            </div> */}
+            </div>
         </article>
     );
 }
