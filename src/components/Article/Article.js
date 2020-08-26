@@ -41,20 +41,20 @@ const Article = ({ titre, lien, from, date }) => {
         //Ouvre le lien dans un nouvel onglet
         if (open) {
             window.open(lien, '_blank');
-            e.currentTarget.className = ""
+            e.currentTarget.classList.remove("articleClick")
         }
     }
 
     const addStyle = (e) => {
         setOpen(true)
-        e.currentTarget.className = "articleClick"
+        e.currentTarget.classList.add("articleClick")
     }
     const removeStyle = (e) => {
         setOpen(false)
-        e.currentTarget.className = ""
+        e.currentTarget.classList.remove("articleClick")
     }
     return (
-        <article onMouseUp={handleClick} onMouseDown={addStyle} onMouseLeave={removeStyle}>
+        <article className="article" onMouseUp={handleClick} onMouseDown={addStyle} onMouseLeave={removeStyle}>
             <span style={{ alignSelf: "flex-start" }}>“</span>
             <p className="article-name">{formatedText(titre)}</p>
 

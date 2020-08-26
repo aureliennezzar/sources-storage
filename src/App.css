@@ -4,8 +4,8 @@
     align-items: center;
 }
 
-.App header {
-    width: 100vw;
+.App header {  
+    width: 100%;
     margin-bottom: 15px;
     height: auto;
     flex-direction: column;

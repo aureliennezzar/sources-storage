@@ -9,7 +9,7 @@ article {
     padding: 10px;
     background: #EBECF0;
     box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
-    border-radius: 2em;
+    border-radius: 10px;
     transition: all 0.2s ease-in-out;
 }
 

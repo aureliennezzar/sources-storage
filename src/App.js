@@ -10,6 +10,7 @@ import {
 import FeedPage from './components/FeedPage/FeedPage';
 import { auth } from 'firebase';
 import RessourcesPage from './components/RessourcesPage/RessourcesPage';
+import PageNotFound from './PageNotFound';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false)
@@ -21,7 +22,6 @@ function App() {
       }
     })
   }, []);
-
   return (
     <>
       <div className="App">
@@ -34,6 +34,7 @@ function App() {
           <PublicRoute exact path="/" authenticated={authenticated} component={FeedPage}></PublicRoute>
           <PublicRoute path="/feed" authenticated={authenticated} component={FeedPage}></PublicRoute>
           <PublicRoute path="/ressources" authenticated={authenticated} component={RessourcesPage}></PublicRoute>
+          <PublicRoute path="*" authenticated={authenticated} component={PageNotFound}></PublicRoute>
         </Switch>
       </Router>
     </>
