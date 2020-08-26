@@ -17,7 +17,13 @@ const Article = ({ titre, lien, from, date }) => {
     }, [])
 
     const formatedText = (text) => {
-        let title = text.split('[')[2].split(']]>')[0]
+        let title = ""
+        try {
+            title += text.split('[')[2].split(']]>')[0]
+        }
+        catch (err) {
+            title += text
+        }
         let count = 0
         let isBig = false
 
