@@ -1,104 +1,114 @@
 .inputs input {
-    padding: 1rem;
-    /* border-radius: 5px; */
-    border: none;
-    width:350px;
-    outline: none;
-    border-radius: 2rem;
-    background: #EBECF0;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    font-family: 'Montserrat', sans-serif;
-    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
-    margin: 0 5px;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+  padding: 1rem;
+  /* border-radius: 5px; */
+  border: none;
+  width: 350px;
+  outline: none;
+  border-radius: 2rem;
+  background: #EBECF0;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  margin: 0 5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-.inputs  input:focus {
-    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
-  }
 
-  .inputs input::-webkit-input-placeholder {
-      
-    color: #61677C;
-    text-shadow: 1px 1px 1px #FFF;
-  }
-  .inputs input::-moz-placeholder {
-    color: #61677C;
-    text-shadow: 1px 1px 1px #FFF;
-  }
-  .inputs input:-ms-input-placeholder {
-    color: #61677C;
-    text-shadow: 1px 1px 1px #FFF;
-  }
-  .inputs input::-ms-input-placeholder {
-    color: #61677C;
-    text-shadow: 1px 1px 1px #FFF;
-  }
-  .inputs input::placeholder {
-    color: #61677C;
-    text-shadow: 1px 1px 1px #FFF;
-  }
+.inputs input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.inputs input::-webkit-input-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input::-moz-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input:-ms-input-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input::-ms-input-placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+.inputs input::placeholder {
+  color: #61677C;
+  text-shadow: 1px 1px 1px #FFF;
+}
 
 .inputs button {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-radius: 50%;
-    background: #EBECF0;
-    box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
-    text-align: center;
-    color: #FF6B35;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-  }
-  button span {
-      position: absolute;
-      top: 50%; left: 50%; 
-      transform: translate(-51%, -52%); 
-      font-family: 'Merriweather', sans-serif;
-      font-weight: 500;
-      font-size: 45px;
-      user-select: none;
-  }
- button:hover {
-   
-    box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
-  }
-  button:active {
-    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
-  }
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background: #EBECF0;
+  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+  text-align: center;
+  color: #FF6B35;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-51%, -52%);
+  font-family: 'Merriweather', sans-serif;
+  font-weight: 500;
+  font-size: 45px;
+  user-select: none;
+}
+
+button:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+button:active {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
 .inputs {
-    display: flex;
-    margin: 35px 0;
+  display: flex;
+  margin: 35px 0;
 }
-
+.inputs div{
+  margin-right: 20px;
+}
 .inputs div label {
-    line-height: 150%;
+  line-height: 150%;
 }
 
-@media screen and (max-width:800px) {
-    .inputs {
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .inputs div {
-        display: flex;
-        justify-content: space-between;
-        margin: 10px 0;
-        width: 75vw;
-    }
-    .inputs input {
-      width: 100%;
-    }
+@media screen and (max-width:835px) {
+  .inputs {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .inputs div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 75vw;
+  }
+  .inputs input {
+    width: 100%;
+  }
 }
 
 .inputs input.error {
-    border: 1px solid red;
+  border: 1px solid red;
 }
