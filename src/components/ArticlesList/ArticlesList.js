@@ -15,7 +15,8 @@ const ArticlesList = () => {
     }
     db.collection("rss").onSnapshot((querySnapshot) => {
       //Vide les articles
-      setArticles([])
+	  setArticles([])
+	  setSkelEnabled(true)
       //Recuperation des documents enregistés sur la bdd RSS
       querySnapshot.forEach((doc) => {
         const { lien, nom } = doc.data()

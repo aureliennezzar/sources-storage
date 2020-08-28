@@ -4,13 +4,13 @@ import './Inputs.css'
 import loader from '../../assets/loader.gif'
 import Alert from '../Alert/Alert';
 const Inputs = () => {
+	// o--^o> vroom vroom
 	const [state, setState] = useState({
 		lien: "",
 		nom: "",
 	})
-	// o--^o> vroom vroom
 	const [openAlert, setOpenAlert] = useState(false)
-	const [alertData, setAlertData] = useState({message:"",severity:""})
+	const [alertData, setAlertData] = useState({ message: "", severity: "" })
 	const [isSending, setIsSending] = useState(false)
 	const [inputsState, setInputsState] = useState({
 		lien: false,
@@ -35,44 +35,35 @@ const Inputs = () => {
 			request.onload = function () {
 				const xmlDoc = parser.parseFromString(this.response, "text/xml");
 				//Si le lien est valide retourne la validité du lien sinon retourne False
-				xmlDoc.querySelector('faultcode') === null
-					? resolve(JSON.parse(xmlDoc.querySelector('validity').innerHTML))
-					: resolve(false)
+				console.log(xmlDoc);
+				try {
+					resolve(JSON.parse(xmlDoc.querySelector('validity').innerHTML))
+				} catch{
+					resolve(false)
+				}
 
 			}
 			request.send()
 		})
 	}
-
-	const checkEmpty = (obj) => {
-		let newtab = [obj.lien, obj.nom]
-		newtab.forEach((e, i) => {
-			if (e.length === 0) {
-				newtab[i] = true
-
-			} else {
-				newtab[i] = false
-			}
-		})
-		return { lien: newtab[0], nom: newtab[1] }
-	}
 	const handleAlert = (message, severity) => {
 		setAlertData({ message, severity })
-		console.log(severity);
 		setOpenAlert(true)
 	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
+		const lienFeed = (lien.slice(0)).trim()
+		const nomFeed = (nom.slice(0)).trim()
 		//Si un des inputs est vide, sort de la fonction
-		if (isValidUrl(lien) === false) {
+		if (isValidUrl(lienFeed) === false) {
 			setInputsState({
 				lien: true,
 				nom: false
 			})
-			handleAlert("Flux RSS non valide", "error")
+			handleAlert("Flux RSS non valide !", "error")
 		}
-		else if (state.lien.length > 0 && state.nom.length > 0) {
-			isFeedValid(lien)
+		else if (lienFeed.length > 0 && nomFeed.length > 0) {
+			isFeedValid(lienFeed)
 				.then((result) => {
 					setIsSending(false)
 					if (result) {
@@ -86,17 +77,20 @@ const Inputs = () => {
 							lien: "",
 							nom: ""
 						})
-						handleAlert("Flux RSS ajouté", "success")
+						handleAlert("Flux RSS ajouté !", "success")
 					} else {
 						setInputsState({
 							lien: true,
 							nom: false
 						})
-						handleAlert("Flux RSS non valide", "error")
+						handleAlert("Flux RSS non valide !", "error")
 					}
 				})
 			//Vide les inputs
-		} else setInputsState(checkEmpty(state))
+		} else {
+			setInputsState({ lien: false, nom: true })
+			handleAlert("Nom de média manquant !", "error")
+		}
 
 	}
 	const handleChange = (e) => {
@@ -130,6 +124,7 @@ const Inputs = () => {
 					: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
 				}
 			</form>
+
 			<Alert
 				open={openAlert}
 				onClose={handleClose}
