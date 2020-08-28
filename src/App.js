@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ArticlesList from './components/ArticlesList/ArticlesList';
-import Inputs from './components/Inputs/Inputs';
 import { PublicRoute } from './routes/PublicRoute';
 import {
   BrowserRouter as Router,
@@ -11,6 +9,7 @@ import FeedPage from './components/FeedPage/FeedPage';
 import { auth } from 'firebase';
 import RessourcesPage from './components/RessourcesPage/RessourcesPage';
 import PageNotFound from './PageNotFound';
+import Nav from './components/Nav/Nav';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false)
@@ -25,6 +24,7 @@ function App() {
   return (
     <>
       <div className="App">
+		  <Nav />
         <header>
           <h1>Welcome to Sources Storage</h1>
         </header>

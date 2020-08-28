@@ -7,7 +7,6 @@ const Article = ({ titre, lien, from, date }) => {
     useLayoutEffect(() => {
         //Formatage de la date de publication
         const newDate = new Date(date)
-        const today = new Date()
         const dd = ('0' + newDate.getDate()).slice(-2)
         const mm = ('0' + (newDate.getMonth() + 1)).slice(-2)
         const yyyy = newDate.getFullYear()

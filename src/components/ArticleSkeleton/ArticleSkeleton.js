@@ -4,10 +4,10 @@ import './ArticleSkeleton.css'
 const ArticleSkeleton = () => {
     return (
         <article className="article-skeleton">
-            <div class="loaderctnr">
-                <span class="circle first"></span>
-                <span class="circle second"></span>
-                <span class="circle third"></span>
+            <div className="loaderctnr">
+                <span className="circle first"></span>
+                <span className="circle second"></span>
+                <span className="circle third"></span>
             </div>
         </article>
     );

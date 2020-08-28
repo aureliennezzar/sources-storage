@@ -1,0 +1,34 @@
+.alert-card {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	min-width: 250px;
+	max-width: 90%;
+	height: 45px;
+	border-radius: 5px;
+	padding: 10px;
+	-webkit-box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 1);
+	box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 1);
+	bottom: 50px;
+	z-index: 99999;
+}
+.alert-card img{
+	color: #fff;
+	width: 20px;
+	margin-right: 10px;
+}
+.alert-card p{
+	margin-right: 20px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+.alert-card span {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
