@@ -104,7 +104,7 @@ const Inputs = () => {
 		})
 
 	}
-	const handleClose = () => {
+	const handleClose = (e) => {
 		setOpenAlert(false)
 	}
 	return (

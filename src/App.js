@@ -24,16 +24,17 @@ function App() {
   return (
     <>
       <div className="App">
-		  <Nav />
+
         <header>
           <h1>Welcome to Sources Storage</h1>
         </header>
       </div>
       <Router>
+        <Nav />
         <Switch>
           <PublicRoute exact path="/" authenticated={authenticated} component={FeedPage}></PublicRoute>
-          <PublicRoute path="/feed" authenticated={authenticated} component={FeedPage}></PublicRoute>
-          <PublicRoute path="/ressources" authenticated={authenticated} component={RessourcesPage}></PublicRoute>
+          <PublicRoute exact path="/feed" authenticated={authenticated} component={FeedPage}></PublicRoute>
+          <PublicRoute exact path="/ressources" authenticated={authenticated} component={RessourcesPage}></PublicRoute>
           <PublicRoute path="*" authenticated={authenticated} component={PageNotFound}></PublicRoute>
         </Switch>
       </Router>

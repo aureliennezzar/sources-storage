@@ -32,3 +32,34 @@
 	transform: translateY(-50%);
 	cursor: pointer;
 }
+.alert-card[close='1']{
+	animation: transition-close .5s;
+}
+.alert-card[close='0']{
+	animation: transition-open .5s;
+}
+
+
+
+@keyframes transition-open{
+	0% {
+	  opacity:0;
+	  transform:  rotate(0deg) scaleX(0) scaleY(0) ;
+	}
+	100% {
+	  opacity:1;
+	  transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+	}
+
+  }
+  @keyframes transition-close{
+	  0% {
+		  opacity:1;
+		  transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+		}
+		
+		100% {
+		  opacity:0;
+		  transform:  rotate(0deg) scaleX(0) scaleY(0) ;
+		}
+  }

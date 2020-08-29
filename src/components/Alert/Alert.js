@@ -4,10 +4,13 @@ import errorIcon from '../../assets/error.svg'
 import infosIcon from '../../assets/infos.svg'
 import successIcon from '../../assets/success.svg'
 import './Alert.css'
+
 const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) => {
+	const [closing, setClosing] = useState(0)
 	const [style, setStyle] = useState({})
 	const [severityImage, setSeverityImage] = useState(infosIcon)
 	useEffect(() => {
+		console.log(closing)
 		switch (severity) {
 			case "error":
 				setStyle({ background: "#A63D40" })
@@ -32,20 +35,35 @@ const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) =
 		}
 		if (open) {
 			setTimeout(() => {
-				onClose();
+				
+				setClosing(1)
+				console.log('fermeture')
 			}, autoHideDuration);
 		}
-	}, [open,severity])
-	const handleClick = (e) => {
-		onClose()
-	}
+	}, [open, severity])
+	
+
 	return (
 		<>
 			{open
-				? <div className="alert-card" style={style}>
+				? <div
+					className="alert-card"
+					style={style}
+					close={closing}
+				
+					onAnimationEnd={(e) => {
+						if (closing) {
+							setClosing(0)
+							onClose()
+
+
+						}
+
+					}}>
+
 					<img src={severityImage}></img>
 					<p>{children}</p>
-					<span onClick={handleClick}>X</span>
+					<span onClick={()=> setClosing(1)}>X</span>
 				</div>
 				: null
 			}

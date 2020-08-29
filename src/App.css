@@ -27,6 +27,6 @@
 
 @media screen and (max-width:800px) {
     .App h1 {
-        font-size: 3.5vmax;
+        font-size: min(max(16px, 4vw), 40px);
     }
 }
