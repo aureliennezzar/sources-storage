@@ -18,8 +18,16 @@
     box-shadow: inset 5px 5px 10px #cfd0d3, inset -5px -5px 10px #ffffff;
     transition: all 0.2s ease-in-out;
 }
-
-.article span {
+.article-badge{
+	position: absolute;
+	width: 10px;
+	height: 40px;
+	top: 0;
+	left: 30px;
+	border-radius: 999999px;
+	transform: rotate(90deg);
+}
+.article .article-quotation {
     font-size: 30px;
     height: 20px;
     font-family: 'Merriweather', serif;

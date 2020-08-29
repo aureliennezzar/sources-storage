@@ -5,61 +5,61 @@ import './ArticlesList.css'
 import ArticleSkeleton from '../ArticleSkeleton/ArticleSkeleton';
 
 const ArticlesList = () => {
-  const [articles, setArticles] = useState([]);
-  const [articlesSkeleton, setArticlesSkeleton] = useState([])
-  const [skelEnabled, setSkelEnabled] = useState(true)
-  useEffect(() => {
-    //Rajout du squelette pour les articles
-    for (let i = 0; i < 50; i++) {
-      setArticlesSkeleton(oldArray => [...oldArray, <ArticleSkeleton />]);
-    }
-    db.collection("rss").onSnapshot((querySnapshot) => {
-      //Vide les articles
-	  setArticles([])
-	  setSkelEnabled(true)
-      //Recuperation des documents enregistés sur la bdd RSS
-      querySnapshot.forEach((doc) => {
-        const { lien, nom } = doc.data()
-        //Recuperation des données de chaque feed RSS
-        const RSS_URL = "https://cors-anywhere.herokuapp.com/" + lien;
-        fetch(RSS_URL)
-          .then(response => response.text())
-          .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-          .then(data => {
-            const items = data.querySelectorAll("item");
-            //Une fois la data du premier feed reçu, enlever le squelette
-            if (skelEnabled) {
-              setSkelEnabled(false)
-            }
+	const [articles, setArticles] = useState([]);
+	const [articlesSkeleton, setArticlesSkeleton] = useState([])
+	const [skelEnabled, setSkelEnabled] = useState(true)
+	useEffect(() => {
+		//Addition of the skeleton for the articles
+		for (let i = 0; i < 50; i++) {
+			setArticlesSkeleton(oldArray => [...oldArray, <ArticleSkeleton />]);
+		}
+		db.collection("rss").onSnapshot((querySnapshot) => {
+			//Empty items
+			setArticles([])
+			setSkelEnabled(true)
+			//Recovery of documents saved on the RSS database
+			querySnapshot.forEach((doc) => {
+				const { lien, nom, color } = doc.data()
+				//Data retrieval of each RSS feed
+				const RSS_URL = "https://cors-anywhere.herokuapp.com/" + lien;
+				fetch(RSS_URL)
+					.then(response => response.text())
+					.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+					.then(data => {
+						const items = data.querySelectorAll("item");
+						//Once the data of the first feed has been received, remove the skeleton
+						if (skelEnabled) {
+							setSkelEnabled(false)
+						}
 
-            items.forEach(item => {
-              //Recuperation du titre, du lien et de la date de publication de chaque item
-              const titre = item.querySelector("title").innerHTML
-              const lien = item.querySelector("link").innerHTML
-              const date = item.querySelector("pubDate").innerHTML
-              //Actualisation du state
-              setArticles(oldArray => [...oldArray, { titre, lien, nom, date }]);
-            })
-          })
-      });
-    });
-  }, [])
+						items.forEach(item => {
+							//Recovery of the title, link and publication date of each item
+							const titre = item.querySelector("title").innerHTML
+							const lien = item.querySelector("link").innerHTML
+							const date = item.querySelector("pubDate").innerHTML
+							//State update
+							setArticles(oldArray => [...oldArray, { titre, lien, nom, date, color }]);
+						})
+					})
+			});
+		});
+	}, [])
 
-  return (
-    <div className="articles">
-      {skelEnabled
-        ? articlesSkeleton.map((e, i) => {
-          return <Fragment key={i}>
-            {e}
-          </Fragment>
-        })
-        : articles.map((article, i) => {
-          const { titre, lien, nom, date } = article
-          return <Article key={i} titre={titre} lien={lien} from={nom} date={date} ></Article>
-        })
-      }
-    </div>
-  );
+	return (
+		<div className="articles">
+			{skelEnabled
+				? articlesSkeleton.map((e, i) => {
+					return <Fragment key={i}>
+						{e}
+					</Fragment>
+				})
+				: articles.map((article, i) => {
+					const { titre, lien, nom, date, color } = article
+					return <Article key={i} titre={titre} lien={lien} from={nom} date={date} color={color} ></Article>
+				})
+			}
+		</div>
+	);
 }
 
 export default ArticlesList;

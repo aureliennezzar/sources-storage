@@ -6,11 +6,14 @@ import successIcon from '../../assets/success.svg'
 import './Alert.css'
 
 const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) => {
-	const [closing, setClosing] = useState(0)
-	const [style, setStyle] = useState({})
+
 	const [severityImage, setSeverityImage] = useState(infosIcon)
+	const [closing, setClosing] = useState(0)
+	const [autoHide, setAutoHide] = useState()
+	const [style, setStyle] = useState({})
+
 	useEffect(() => {
-		console.log(closing)
+		//Change the style of the alert depending of the severity
 		switch (severity) {
 			case "error":
 				setStyle({ background: "#A63D40" })
@@ -33,15 +36,15 @@ const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) =
 				setStyle({ background: "#6494AA" })
 				break;
 		}
+		//If Alert is active then start the "auto hide" timeout
 		if (open) {
-			setTimeout(() => {
-				
-				setClosing(1)
-				console.log('fermeture')
-			}, autoHideDuration);
+			setAutoHide(
+				setTimeout(() => {
+					setClosing(1)
+				}, autoHideDuration))
 		}
-	}, [open, severity])
-	
+	}, [open])
+
 
 	return (
 		<>
@@ -49,21 +52,19 @@ const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) =
 				? <div
 					className="alert-card"
 					style={style}
+					//Add closing attribute to trigger css animation
 					close={closing}
-				
 					onAnimationEnd={(e) => {
+						//If the closing animation is finished, clear the timeout, reset the closing state and close the alert.
 						if (closing) {
 							setClosing(0)
+							clearTimeout(autoHide)
 							onClose()
-
-
 						}
-
 					}}>
-
 					<img src={severityImage}></img>
 					<p>{children}</p>
-					<span onClick={()=> setClosing(1)}>X</span>
+					<span onClick={() => setClosing(1)}>X</span>
 				</div>
 				: null
 			}

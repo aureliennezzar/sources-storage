@@ -8,6 +8,7 @@ const Inputs = () => {
 	const [state, setState] = useState({
 		lien: "",
 		nom: "",
+		color: "#e66465"
 	})
 	const [openAlert, setOpenAlert] = useState(false)
 	const [alertData, setAlertData] = useState({ message: "", severity: "" })
@@ -16,7 +17,7 @@ const Inputs = () => {
 		lien: false,
 		nom: false
 	})
-	const { lien, nom, } = state
+	const { lien, nom, color } = state
 	function isValidUrl(string) {
 		try {
 			new URL(string);
@@ -35,7 +36,6 @@ const Inputs = () => {
 			request.onload = function () {
 				const xmlDoc = parser.parseFromString(this.response, "text/xml");
 				//Si le lien est valide retourne la validité du lien sinon retourne False
-				console.log(xmlDoc);
 				try {
 					resolve(JSON.parse(xmlDoc.querySelector('validity').innerHTML))
 				} catch{
@@ -54,7 +54,7 @@ const Inputs = () => {
 		e.preventDefault()
 		const lienFeed = (lien.slice(0)).trim()
 		const nomFeed = (nom.slice(0)).trim()
-		//Si un des inputs est vide, sort de la fonction
+		//If one of the inputs is empty, exit the function
 		if (isValidUrl(lienFeed) === false) {
 			setInputsState({
 				lien: true,
@@ -67,15 +67,17 @@ const Inputs = () => {
 				.then((result) => {
 					setIsSending(false)
 					if (result) {
-						//Si un le lien est valide alors creer un nouveau document dans la bdd RSS
+						//If a link is valid then create a new document in the RSS database
 						db.collection("rss").add({
 							lien,
-							nom
+							nom,
+							color
 						})
 						setState({
 							...state,
 							lien: "",
-							nom: ""
+							nom: "",
+							color:"#e66465"
 						})
 						handleAlert("Flux RSS ajouté !", "success")
 					} else {
@@ -86,7 +88,6 @@ const Inputs = () => {
 						handleAlert("Flux RSS non valide !", "error")
 					}
 				})
-			//Vide les inputs
 		} else {
 			setInputsState({ lien: false, nom: true })
 			handleAlert("Nom de média manquant !", "error")
@@ -112,17 +113,23 @@ const Inputs = () => {
 			<form className="inputs"
 				onSubmit={handleSubmit}>
 				<div>
-					{/* <label>Lien RSS</label> */}
-					<input className={inputsState.lien ? "error" : null} type="text" name="lien" onChange={handleChange} placeholder="Lien RSS " value={lien}></input>
+					<label>Lien RSS</label>
+					<input className={`text-input ${inputsState.lien ? "error" : null}`} type="text" name="lien" onChange={handleChange} placeholder="Écrire ici" value={lien}></input>
 				</div>
 				<div>
-					{/* <label>Nom du flux</label> */}
-					<input className={inputsState.nom ? "error" : null} type="text" name="nom" onChange={handleChange} placeholder="Média " value={nom}></input>
+					<label>Nom du flux</label>
+					<input className={`text-input ${inputsState.nom ? "error" : null}`} type="text" name="nom" onChange={handleChange} placeholder="Écrire ici" value={nom}></input>
 				</div>
-				{isSending
-					? <button disabled={true} className="inputs-button"><img src={loader}></img></button>
-					: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
-				}
+				<div>
+					<label>Couleur</label>
+					<input className="color-picker" type="color" name="color"
+						value={color} onChange={handleChange} />
+				</div>
+
+					{isSending
+						? <button disabled={true} className="inputs-button"><img src={loader}></img></button>
+						: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
+					}
 			</form>
 
 			<Alert
