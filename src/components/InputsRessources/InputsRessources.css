@@ -51,9 +51,6 @@
 	width: 35px;
 	height: 38px;
 }
-.inputs input.error {
-	border: 1px solid red;
-}
 
 .inputs .submit-button span {
 	position: absolute;
@@ -134,7 +131,7 @@
 
 /* RESPONSIVE  */
 
-@media screen and (max-width:1100px) {
+@media screen and (max-width:1090px) {
 	.inputs {
 		width: 100%;
 		-webkit-box-orient: vertical;
@@ -173,4 +170,8 @@
 	.color-picker::-webkit-color-swatch {
 		border-radius: 999999999px;
 	}
+}
+
+.inputs input.error {
+	border: 1px solid red;
 }

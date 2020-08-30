@@ -1,26 +1,39 @@
 nav{
-	background: grey;
-	position: absolute;
+	background: #EBECF0;
+	position: fixed;
+	width: 80px;
 	left: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
+	border-bottom-right-radius: 7px;
+	border-top-right-radius: 7px;
+	box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+	-webkit-user-select: none;
 }
-nav ul{
-	list-style: none;
+
+nav a:nth-child(1){
+	border-top-right-radius: 7px;
 }
-nav ul li:nth-child(2){
-	border-top: 1px solid black;
+nav a:nth-child(2){
+	border-top: 1px solid #ccc;
+	border-bottom-right-radius: 7px;
 }
-nav ul li{
-	color: #fff;
+nav a{
+	color: rgb(129, 129, 129);
 	cursor: pointer;
 	height: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-decoration: none;
+	font-size:13px;
 }
-nav ul li:hover{
-	background: rgb(95, 95, 95);
+nav a:hover{
+	box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	-webkit-box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+}
+.navbar__link--active{
+	color: #FF6B35;
 }

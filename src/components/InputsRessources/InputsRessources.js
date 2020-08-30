@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { db } from '../../services/firebase'
-import './Inputs.css'
+import './InputsRessources.css'
 import loader from '../../assets/loader.gif'
 import Alert from '../Alert/Alert';
-const Inputs = () => {
+const InputsRessources = () => {
 	// o--^o> vroom vroom
 	const [state, setState] = useState({
 		lien: "",
@@ -18,33 +18,14 @@ const Inputs = () => {
 		nom: false
 	})
 	const { lien, nom, color } = state
+
 	function isValidUrl(string) {
 		try {
 			new URL(string);
 		} catch (_) {
 			return false;
 		}
-	}
-	const isFeedValid = (lien) => {
-		//Fonction qui test si un lien est un flux rss ou non
-		setIsSending(true)
-		const parser = new DOMParser();
-		const validator = `https://cors-anywhere.herokuapp.com/http://validator.w3.org/feed/check.cgi?url=${lien}&output=soap12`
-		return new Promise((resolve, reject) => {
-			var request = new XMLHttpRequest()
-			request.open('GET', validator, true)
-			request.onload = function () {
-				const xmlDoc = parser.parseFromString(this.response, "text/xml");
-				//Si le lien est valide retourne la validité du lien sinon retourne False
-				try {
-					resolve(JSON.parse(xmlDoc.querySelector('validity').innerHTML))
-				} catch{
-					resolve(false)
-				}
-
-			}
-			request.send()
-		})
+		return true
 	}
 	const handleAlert = (message, severity) => {
 		setAlertData({ message, severity })
@@ -52,45 +33,28 @@ const Inputs = () => {
 	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const lienFeed = (lien.slice(0)).trim()
-		const nomFeed = (nom.slice(0)).trim()
-		//If one of the inputs is empty, exit the function
-		if (isValidUrl(lienFeed) === false) {
+		if (isValidUrl(lien) === false) {
 			setInputsState({
 				lien: true,
 				nom: false
 			})
-			handleAlert("Flux RSS non valide !", "error")
-		}
-		else if (nomFeed.length > 0) {
-			isFeedValid(lienFeed)
-				.then((result) => {
-					setIsSending(false)
-					if (result) {
-						//If a link is valid then create a new document in the RSS database
-						db.collection("rss").add({
-							lien,
-							nom,
-							color
-						})
-						setState({
-							...state,
-							lien: "",
-							nom: "",
-							color:"#e66465"
-						})
-						handleAlert("Flux RSS ajouté !", "success")
-					} else {
-						setInputsState({
-							lien: true,
-							nom: false
-						})
-						handleAlert("Flux RSS non valide !", "error")
-					}
-				})
+			handleAlert("Lien non valide !", "error")
+		} else if (nom.trim().length != 0) {
+			db.collection("ressources").add({
+				lien,
+				nom,
+				color
+			})
+			setState({
+				...state,
+				lien: "",
+				nom: "",
+				color: "#e66465"
+			})
+			handleAlert("Ressource ajoutée !", "success")
 		} else {
 			setInputsState({ lien: false, nom: true })
-			handleAlert("Nom de média manquant !", "error")
+			handleAlert("Titre de la ressource manquant !", "error")
 		}
 
 	}
@@ -113,11 +77,11 @@ const Inputs = () => {
 			<form className="inputs"
 				onSubmit={handleSubmit}>
 				<div>
-					<label>Lien RSS</label>
+					<label>Ressource</label>
 					<input className={`text-input ${inputsState.lien ? "error" : null}`} type="text" name="lien" onChange={handleChange} placeholder="Écrire ici" value={lien}></input>
 				</div>
 				<div>
-					<label>Nom du flux</label>
+					<label>Titre</label>
 					<input className={`text-input ${inputsState.nom ? "error" : null}`} type="text" name="nom" onChange={handleChange} placeholder="Écrire ici" value={nom}></input>
 				</div>
 				<div>
@@ -126,10 +90,10 @@ const Inputs = () => {
 						value={color} onChange={handleChange} />
 				</div>
 
-					{isSending
-						? <button disabled={true} className="inputs-button"><img src={loader}></img></button>
-						: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
-					}
+				{isSending
+					? <button disabled={true} className="inputs-button"><img src={loader}></img></button>
+					: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
+				}
 			</form>
 
 			<Alert
@@ -143,4 +107,4 @@ const Inputs = () => {
 	);
 }
 
-export default Inputs;
+export default InputsRessources;

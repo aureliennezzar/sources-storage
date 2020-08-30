@@ -1,0 +1,36 @@
+.ressource-card{
+    position: relative;
+	display: flex;
+	width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background: #EBECF0;
+    box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+	user-select: none;
+	margin-bottom: 30px;
+}
+
+.ressource-card:hover {
+	box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+.ressource-name{
+	margin-left:55px;
+}
+.ressource-badge{
+	position: absolute;
+	width: 10px;
+	height: 40px;
+	top: 0;
+	left: 30px;
+	border-radius: 999999px;
+	transform: rotate(90deg);
+}
+.ressourceClick{
+    box-shadow: inset 5px 5px 10px #cfd0d3, inset -5px -5px 10px #ffffff;
+    transition: all 0.2s ease-in-out;
+}

@@ -31,7 +31,7 @@ function App() {
 				</header>
 			</div>
 			<Router>
-				{/* <Nav /> */}
+				<Nav />
 				<Switch>
 					<PublicRoute exact path="/" authenticated={authenticated} component={FeedPage}></PublicRoute>
 					<PublicRoute exact path="/feed" authenticated={authenticated} component={FeedPage}></PublicRoute>

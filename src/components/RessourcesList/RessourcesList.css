@@ -1,0 +1,9 @@
+.ressources{
+    margin-bottom: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    width: 85%;
+    margin-top: 30px;
+    background: #EBECF0;
+}
