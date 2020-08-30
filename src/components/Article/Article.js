@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import './Article.css'
 
-const Article = ({ titre, lien, from, date, color }) => {
+const Article = ({ titre, lien, from, color, date }) => {
 	const [time, setTime] = useState("")
 	const [open, setOpen] = useState(false)
 	useLayoutEffect(() => {
@@ -12,7 +12,7 @@ const Article = ({ titre, lien, from, date, color }) => {
 		const yyyy = newDate.getFullYear()
 		setTime(`${dd}/${mm}/${yyyy}`)
 
-
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const formatedText = (text) => {
@@ -33,6 +33,7 @@ const Article = ({ titre, lien, from, date, color }) => {
 			}
 			else {
 				isBig = true
+				return null
 			}
 		}).join(' ').trim()
 		if (isBig) {
@@ -60,7 +61,7 @@ const Article = ({ titre, lien, from, date, color }) => {
 	}
 	return (
 		<article className="article" onMouseUp={handleClick} onMouseDown={addStyle} onMouseLeave={removeStyle}>
-			<span className="article-badge" style={{background:color}}></span>
+			<span className="article-badge" style={{ background: color }}></span>
 			<span className="article-quotation" style={{ alignSelf: "flex-start" }}>“</span>
 			<p className="article-name">{formatedText(titre)}</p>
 

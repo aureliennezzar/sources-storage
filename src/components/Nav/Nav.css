@@ -1,6 +1,9 @@
-nav{
+nav {
+	position: relative;
+}
+
+.navWrap {
 	background: #EBECF0;
-	position: fixed;
 	width: 80px;
 	left: 0;
 	display: flex;
@@ -11,16 +14,20 @@ nav{
 	border-top-right-radius: 7px;
 	box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
 	-webkit-user-select: none;
+	position: fixed;
+	z-index: 99;
 }
 
-nav a:nth-child(1){
+nav .navWrap a:nth-child(1) {
 	border-top-right-radius: 7px;
 }
-nav a:nth-child(2){
+
+nav .navWrap a:nth-child(2) {
 	border-top: 1px solid #ccc;
 	border-bottom-right-radius: 7px;
 }
-nav a{
+
+nav .navWrap a {
 	color: rgb(129, 129, 129);
 	cursor: pointer;
 	height: 50px;
@@ -28,12 +35,34 @@ nav a{
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-	font-size:13px;
+	font-size: 13px;
 }
-nav a:hover{
+
+nav .navWrap a:hover {
 	box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
 	-webkit-box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
 }
-.navbar__link--active{
+
+.navWrap .navbar__link--active {
 	color: #FF6B35;
+}
+
+@media screen and (max-width:470px) {
+	.navWrap {
+		width: 100%;
+		bottom: 0;
+	}
+	nav .navWrap a {
+		color: rgb(129, 129, 129);
+		cursor: pointer;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		font-size: 13px;
+	}
+	#root{
+		margin-bottom: 35px;
+	}
 }

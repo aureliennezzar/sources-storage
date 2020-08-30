@@ -43,6 +43,8 @@ const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) =
 					setClosing(1)
 				}, autoHideDuration))
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [open])
 
 
@@ -62,7 +64,7 @@ const Alert = ({ open, autoHideDuration = 3000, onClose, severity, children }) =
 							onClose()
 						}
 					}}>
-					<img src={severityImage}></img>
+					<img src={severityImage} alt="Alert icon"></img>
 					<p>{children}</p>
 					<span onClick={() => setClosing(1)}>X</span>
 				</div>

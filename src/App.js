@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import { PublicRoute } from './routes/PublicRoute';
 import {
 	BrowserRouter as Router,
-	Switch
+	Switch,
+	Redirect,
+	Route
 } from "react-router-dom";
-import FeedPage from './components/FeedPage/FeedPage';
-import { auth } from 'firebase';
-import RessourcesPage from './components/RessourcesPage/RessourcesPage';
+import RessourcesPage from './pages/RessourcesPage/RessourcesPage';
+import FeedPage from './pages/FeedPage/FeedPage';
 import PageNotFound from './PageNotFound';
 import Nav from './components/Nav/Nav';
 
 function App() {
-	const [authenticated, setAuthenticated] = useState(false)
-
 	useEffect(() => {
 		console.log("App created in 2020 by Aurélien Tallet & Aurélien Nezzar")
-		auth().onAuthStateChanged((user) => {
-			if (user) {
-				setAuthenticated(true)
-			}
-		})
 	}, []);
 	return (
 		<>
@@ -33,10 +26,19 @@ function App() {
 			<Router>
 				<Nav />
 				<Switch>
-					<PublicRoute exact path="/" authenticated={authenticated} component={FeedPage}></PublicRoute>
-					<PublicRoute exact path="/feed" authenticated={authenticated} component={FeedPage}></PublicRoute>
-					<PublicRoute exact path="/ressources" authenticated={authenticated} component={RessourcesPage}></PublicRoute>
-					<PublicRoute path="*" authenticated={authenticated} component={PageNotFound}></PublicRoute>
+					<Route
+						exact
+						path="/"
+						render={() => {
+							return (
+								<Redirect to="/feed" />
+							)
+						}}
+					/>
+					
+					<Route exact path="/feed" render={() => <FeedPage />} />
+					<Route exact path="/ressources" render={() => <RessourcesPage />} />
+					<Route exact path="*" render={() => <PageNotFound />} />
 				</Switch>
 			</Router>
 		</>

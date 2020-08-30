@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../../services/firebase'
 import './Inputs.css'
 import loader from '../../assets/loader.gif'
 import Alert from '../Alert/Alert';
-const Inputs = () => {
+const Inputs = ({ type }) => {
 	// o--^o> vroom vroom
+	useEffect(()=>{
+		return ()=>{
+			setIsSubscribe(false)
+		}
+	},[])
 	const [state, setState] = useState({
 		lien: "",
 		nom: "",
 		color: "#e66465"
 	})
+	const [isSubscribe, setIsSubscribe] = useState(true)
 	const [openAlert, setOpenAlert] = useState(false)
 	const [alertData, setAlertData] = useState({ message: "", severity: "" })
 	const [isSending, setIsSending] = useState(false)
@@ -18,6 +24,7 @@ const Inputs = () => {
 		nom: false
 	})
 	const { lien, nom, color } = state
+
 	function isValidUrl(string) {
 		try {
 			new URL(string);
@@ -25,6 +32,7 @@ const Inputs = () => {
 			return false;
 		}
 	}
+
 	const isFeedValid = (lien) => {
 		//Fonction qui test si un lien est un flux rss ou non
 		setIsSending(true)
@@ -43,7 +51,8 @@ const Inputs = () => {
 				}
 
 			}
-			request.send()
+			if (isSubscribe) request.send()
+
 		})
 	}
 	const handleAlert = (message, severity) => {
@@ -52,45 +61,66 @@ const Inputs = () => {
 	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		const lienFeed = (lien.slice(0)).trim()
-		const nomFeed = (nom.slice(0)).trim()
+
 		//If one of the inputs is empty, exit the function
-		if (isValidUrl(lienFeed) === false) {
+		if (isValidUrl(lien) === false) {
 			setInputsState({
 				lien: true,
 				nom: false
 			})
-			handleAlert("Flux RSS non valide !", "error")
-		}
-		else if (nomFeed.length > 0) {
-			isFeedValid(lienFeed)
-				.then((result) => {
-					setIsSending(false)
-					if (result) {
-						//If a link is valid then create a new document in the RSS database
-						db.collection("rss").add({
-							lien,
-							nom,
-							color
-						})
-						setState({
-							...state,
-							lien: "",
-							nom: "",
-							color:"#e66465"
-						})
-						handleAlert("Flux RSS ajouté !", "success")
-					} else {
-						setInputsState({
-							lien: true,
-							nom: false
-						})
-						handleAlert("Flux RSS non valide !", "error")
-					}
+			type
+				? handleAlert("Flux RSS non valide !", "error")
+				: handleAlert("Lien non valide !", "error")
+
+		} else if (nom.trim().length > 0) {
+			if (type) {
+				isFeedValid(lien)
+					.then((result) => {
+						if (isSubscribe) {
+							setIsSending(false)
+							if (result) {
+								//If a link is valid then create a new document in the RSS database
+								db.collection("rss").add({
+									lien,
+									nom,
+									color
+								})
+								setState({
+									...state,
+									lien: "",
+									nom: "",
+									color: "#e66465"
+								})
+								handleAlert("Flux RSS ajouté !", "success")
+							} else {
+								setInputsState({
+									lien: true,
+									nom: false
+								})
+								handleAlert("Flux RSS non valide !", "error")
+							}
+						}
+					})
+			} else {
+				db.collection("ressources").add({
+					lien,
+					nom,
+					color
 				})
+				setState({
+					...state,
+					lien: "",
+					nom: "",
+					color: "#e66465"
+				})
+				handleAlert("Ressource ajoutée !", "success")
+			}
 		} else {
 			setInputsState({ lien: false, nom: true })
-			handleAlert("Nom de média manquant !", "error")
+			type
+				? handleAlert("Nom de média manquant !", "error")
+				: handleAlert("Titre de la ressource manquant !", "error")
+
 		}
 
 	}
@@ -113,11 +143,11 @@ const Inputs = () => {
 			<form className="inputs"
 				onSubmit={handleSubmit}>
 				<div>
-					<label>Lien RSS</label>
+					<label>{type ? "Média" : "Ressource"}</label>
 					<input className={`text-input ${inputsState.lien ? "error" : null}`} type="text" name="lien" onChange={handleChange} placeholder="Écrire ici" value={lien}></input>
 				</div>
 				<div>
-					<label>Nom du flux</label>
+					<label>{type ? "Nom du flux" : "Titre"}</label>
 					<input className={`text-input ${inputsState.nom ? "error" : null}`} type="text" name="nom" onChange={handleChange} placeholder="Écrire ici" value={nom}></input>
 				</div>
 				<div>
@@ -126,10 +156,10 @@ const Inputs = () => {
 						value={color} onChange={handleChange} />
 				</div>
 
-					{isSending
-						? <button disabled={true} className="inputs-button"><img src={loader}></img></button>
-						: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
-					}
+				{isSending
+					? <button disabled={true} className="inputs-button"><img alt="Loading animation" src={loader}></img></button>
+					: <button className="submit-button inputs-button" type="submit"><span>+</span></button>
+				}
 			</form>
 
 			<Alert

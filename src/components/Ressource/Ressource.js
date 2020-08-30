@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Ressource.css'
 const Ressource = ({ titre, lien, date, color }) => {
 	const [open, setOpen] = useState(false)

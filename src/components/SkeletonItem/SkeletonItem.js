@@ -1,5 +1,5 @@
 import React from 'react';
-import './ArticleSkeleton.css'
+import './SkeletonItem.css'
 
 const ArticleSkeleton = () => {
     return (
