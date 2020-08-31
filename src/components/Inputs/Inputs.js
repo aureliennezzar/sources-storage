@@ -55,10 +55,12 @@ const Inputs = ({ type }) => {
 
 		})
 	}
+
 	const handleAlert = (message, severity) => {
 		setAlertData({ message, severity })
 		setOpenAlert(true)
 	}
+	
 	const handleSubmit = (e) => {
 		e.preventDefault()
 

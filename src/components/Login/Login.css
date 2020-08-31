@@ -1,0 +1,49 @@
+:root {
+	--scale-value: 1;
+	--btn-size: 100px;
+}
+
+.login-btn-wrapper {
+	position: fixed;
+	z-index: 9999;
+}
+
+.login-btn img {
+	width: 20px;
+	height: auto;
+	transform: translate(-120%, 80%);
+}
+
+.login-btn {
+	position: fixed;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #EBECF0;
+	box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	-webkit-box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	width: var(--btn-size);
+	height: var(--btn-size);
+	right: 0;
+	transform: translate(50%, -50%);
+}
+
+.animate-login {
+	animation-name: animate-login;
+	animation-duration: 1s;
+}
+
+
+@keyframes animate-login {
+	50% {
+		transform: translate(calc(-50vw + 50%), calc(50vh - 50%)) scale(.7);
+	}
+	70% {
+		transform: translate(calc(-50vw + 50%), calc(50vh - 50%)) scale(.25);
+	}
+	100% {
+		transform: translate(calc(-50vw + 50%), calc(50vh - 50%)) scale(var(--scale-value));
+	}
+}
