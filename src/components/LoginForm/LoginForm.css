@@ -1,6 +1,83 @@
-.login-form{
+
+.login-form {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	flex-direction: column;
-	width: 200px;
+}
+
+.login-form input {
+	-webkit-appearance: none;
+	padding: 1rem;
+	/* border-radius: 5px; */
+	border: none;
+	width: 350px;
+	outline: none;
+	border-radius: 2rem;
+	background-color: #EBECF0;
+	font-size: 1rem;
+	letter-spacing: 0.1em;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	-webkit-box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+	margin: 0 5px;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.login-form input:focus {
+	box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+.login-form input.error {
 	border: 1px solid red;
+}
+
+.login-form button {
+	font-size: 1rem;
+	margin: 15px 5px;
+	width:200px;
+	height:50px;
+	-webkit-appearance: none;
+	display: block;
+	border: none;
+	outline: none;
+	border-radius: 999px;
+	background: #EBECF0;
+	box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+	text-align: center;
+	color: #FF6B35;
+	cursor: pointer;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all .2s ease-in-out;
+	align-self: flex-end;
+}
+
+
+
+
+
+
+.login-form button:hover {
+	box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.login-form button:active {
+	box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.login-form div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.login-form div label {
+	margin: 15px;
+	line-height: 150%;
+	font-size: 1rem;
+	letter-spacing: 0.1em;
+	font-family: 'Montserrat', sans-serif;
+	color: #61677C;
+	text-shadow: 1px 1px 1px #FFF;
 }

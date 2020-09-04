@@ -13,7 +13,8 @@ import PageNotFound from './PageNotFound';
 import Nav from './components/Nav/Nav';
 import Login from './components/Login/Login';
 import { UserContext } from './contexts/UserContext';
-
+import Header from './components/Header/Header'
+import LoginForm from './components/LoginForm/LoginForm';
 function App() {
 	const [userRole, setUserRole] = useState('user')
 	useEffect(() => {
@@ -32,9 +33,7 @@ function App() {
 	return (
 		<>
 			<div className="App">
-				<header>
-					<h1>Welcome to Sources Storage</h1>
-				</header>
+				<Header />
 				<Login />
 			</div>
 			<Router>
@@ -52,6 +51,7 @@ function App() {
 					<UserContext.Provider value={userRole}>
 						<Route exact path="/feed" component={FeedPage} />
 						<Route exact path="/ressources" component={RessourcesPage} />
+						<Route exact path="/login" component={LoginForm} />
 					</UserContext.Provider>
 					<Route exact path="*" component={PageNotFound} />
 				</Switch>

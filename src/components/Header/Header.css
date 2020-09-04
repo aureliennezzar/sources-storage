@@ -1,0 +1,26 @@
+ header {  
+    width: 100%;
+    margin-bottom: 15px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+header h1 {
+    margin: 30px 0 0 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    color: #BABECC;
+    text-shadow: 1px 1px 1px #FFF;
+    font-size: 2.5rem;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+}
+
+@media screen and (max-width:800px) {
+    header h1 {
+        font-size: min(max(16px, 4vw), 40px);
+    }
+}

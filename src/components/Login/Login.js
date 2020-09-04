@@ -4,6 +4,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import userImage from '../../assets/user.png'
 
 const Login = () => {
+	const [close, setClose] = useState(true)
 	const [isOpen, setIsOpen] = useState()
 	const [button, setButton] = useState()
 	const [btnImage, setBtnImage] = useState()
@@ -48,13 +49,13 @@ const Login = () => {
 	}
 	return (
 		<div className="login-btn-wrapper" onClick={handleClick} onAnimationEnd={handleAnimationEnd}>
-			<div className="login-btn" style={style}>
+			{close && <div className="login-btn" style={style}>
 				{isOpen
-					? <LoginForm />
+					? <LoginForm close={setClose} />
 					: null
 				}
 				<img src={userImage}></img>
-			</div>
+			</div>}
 		</div>);
 }
 
