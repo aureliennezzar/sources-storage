@@ -24,7 +24,7 @@
 .alert-card p {
 	margin-right: 30px;
 	overflow-wrap: break-word;
-	word-wrap: break-word;
+	word-break: break-all;
 	hyphens: auto;
 }
 

@@ -1,5 +1,6 @@
 .article {
-    color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
+	width: 350px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -45,7 +46,7 @@
     font-size: 1.2rem;
     color: #61677C;
     letter-spacing: .15rem;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.238);
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.238);
 }
 
 .article-footer {

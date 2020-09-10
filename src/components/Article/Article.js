@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState } from 'react';
 import './Article.css'
 
-const Article = ({ titre, lien, from, color, date }) => {
+const Article = ({ lien, from, color, date, titre}) => {
+	const [title, setTitle] = useState(titre)
 	const [time, setTime] = useState("")
 	const [open, setOpen] = useState(false)
 	useLayoutEffect(() => {
@@ -11,36 +12,17 @@ const Article = ({ titre, lien, from, color, date }) => {
 		const mm = ('0' + (newDate.getMonth() + 1)).slice(-2)
 		const yyyy = newDate.getFullYear()
 		setTime(`${dd}/${mm}/${yyyy}`)
-
+		setTitle(title.replace("<![CDATA[", "").replace("]]>", ""))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const formatedText = (text) => {
-		let title = ""
-		try {
-			title += text.split('[')[2].split(']]>')[0]
-		}
-		catch (err) {
-			title += text
-		}
-		let count = 0
-		let isBig = false
-
-		const result = title.split(" ").map(word => {
-			count += word.length + 1
-			if (count <= 100) {
-				return word
-			}
-			else {
-				isBig = true
-				return null
-			}
-		}).join(' ').trim()
-		if (isBig) {
-			return result + "..."
-		} else {
-			return result
-		}
+	String.prototype.cutString = function(n) {
+		let cut= this.indexOf(' ', n);
+		if(cut== -1) return this;
+		const result = this.substring(0, cut).split(' ')
+		const lastWord = result[result.length - 1]
+		if( this.indexOf(lastWord)+lastWord.length>n ) result.pop()
+		return result.join(' ')+"..."
 	}
 
 	const handleClick = (e) => {
@@ -63,7 +45,7 @@ const Article = ({ titre, lien, from, color, date }) => {
 		<article className="article" onMouseUp={handleClick} onMouseDown={addStyle} onMouseLeave={removeStyle}>
 			<span className="article-badge" style={{ background: color }}></span>
 			<span className="article-quotation" style={{ alignSelf: "flex-start" }}>“</span>
-			<p className="article-name">{formatedText(titre)}</p>
+			<p className="article-name">{title.cutString(100)}</p>
 
 			<span className="article-quotation" style={{ alignSelf: "flex-end" }}>”</span>
 			<div className="article-footer">
